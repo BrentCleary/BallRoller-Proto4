@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManagerScript : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
     public GameObject powerupPrefab;
     private float spawnRange = 9.0f;
     float enemySpawnY = 10.0f;
@@ -18,7 +18,6 @@ public class SpawnManagerScript : MonoBehaviour
         Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
 
     }
-
 
     // Update is called once per frame
     void Update()
@@ -37,7 +36,8 @@ public class SpawnManagerScript : MonoBehaviour
     {
         for(int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition() + new Vector3(0,enemySpawnY,0), enemyPrefab.transform.rotation);
+            int randomEnemy = Random.Range(0,enemyPrefab.Length);
+            Instantiate(enemyPrefab[randomEnemy], GenerateSpawnPosition() + new Vector3(0,enemySpawnY,0), enemyPrefab[randomEnemy].transform.rotation);
         }
     }
 
